@@ -2,7 +2,7 @@
 Tag-based environment configuration for structs.
 
 [![Godoc](https://godoc.org/github.com/nicklanng/env?status.svg)](https://godoc.org/github.com/nicklanng/env)
-![](https://github.com/nicklanng/env/workflows/CI/badge.svg)
+[![](https://github.com/nicklanng/env/workflows/CI/badge.svg)](https://github.com/nicklanng/env/actions)
 [![Go Report Card](https://goreportcard.com/badge/github.com/nicklanng/env)](https://goreportcard.com/report/github.com/nicklanng/env)
 
 ## Installation
