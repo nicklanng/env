@@ -654,6 +654,29 @@ func TestEnvCustomTypeStructWithError(t *testing.T) {
 	Assert(t, strings.Contains(err.Error(), errConfigDurationError.Error()))
 }
 
+type Nested struct {
+	Prop    string `env:"PROP" required:"true"`
+	IntProp int    `env:"INTPROP" default:"1"`
+}
+
+type TopLevel struct {
+	TopLevelProp string `env:"TOPLEVELPROP" required:"true"`
+	NestedOject  Nested
+}
+
+func TestEnvNestedStruct(t *testing.T) {
+	os.Setenv("TOPLEVELPROP", "top level prop")
+	os.Setenv("PROP", "nested string")
+	os.Setenv("INTPROP", "10")
+
+	config := TopLevel{}
+	err := Set(&config)
+	ErrorNil(t, err)
+	Equals(t, "top level prop", config.TopLevelProp)
+	Equals(t, "nested string", config.NestedOject.Prop)
+	Equals(t, 10, config.NestedOject.IntProp)
+}
+
 type configDuration struct {
 	Duration time.Duration
 }
